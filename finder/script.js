@@ -112616,7 +112616,9 @@ const users = [
 ];
 
 
-    
+
+
+
 
 
 function finder() {
@@ -112640,18 +112642,18 @@ function finder() {
         }
 
         const [numberAndElement, dataSource] = command.split(':');
-        const [numElements, ...elementNameParts] = numberAndElement.split('-');
-        const elementName = elementNameParts.join('-').trim();
-        const dataSourceArray = dataSources[dataSource.trim()];
+        const [numElements] = numberAndElement.split('-').map(e => e.trim());
+        const trimmedDataSource = dataSource.trim();
+        const dataSourceArray = dataSources[trimmedDataSource];
 
         if (!dataSourceArray) {
-            resultDiv.innerHTML += `<h3>Data source "${dataSource.trim()}" not found</h3>`;
+            resultDiv.innerHTML += `<h3>Data source "${trimmedDataSource}" not found</h3>`;
             return;
         }
 
         const groupedElements = dataSourceArray.slice(0, parseInt(numElements));
 
-        let resultString = `<h3>Grouped Elements for "${dataSource.trim()} (${numElements})":</h3>`;
+        let resultString = `<h3>Grouped Elements for "${trimmedDataSource} (${numElements})":</h3>`;
         if (groupedElements.length > 0) {
             const ul = document.createElement('ul');
             groupedElements.forEach(element => {
@@ -112663,10 +112665,11 @@ function finder() {
                 }
                 ul.appendChild(li);
             });
-            resultDiv.appendChild(ul);
+            resultString += ul.outerHTML;
         } else {
             resultString += '<p>No elements found or incorrect input.</p>';
         }
+
         resultDiv.innerHTML += resultString;
     });
 }
