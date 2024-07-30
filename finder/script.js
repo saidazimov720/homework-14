@@ -112615,3 +112615,6 @@ const users = [
     }
 ];
 
+
+const input = document.getElementById("findInput");
+const result = document.getElementById("result");
