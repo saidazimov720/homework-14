@@ -112618,3 +112618,12 @@ const users = [
 
 const input = document.getElementById("findInput");
 const result = document.getElementById("result");
+
+const dataSources = {
+    posts:post,
+    comments: comments,
+    albums: albums,
+    photos : photos,
+    todos : todos,
+    users : users
+}
